@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adam Piątek - Korepetycje Gamedev & Python</title>
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --secondary: #1e1e2e; /* Ciemne tło jak w edytorze kodu */
+            --text-light: #f4f4f4;
+            --accent: #00d2be;
+            --success: #28a745;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: var(--secondary);
+            position: relative;
+            overflow: hidden;
+            color: var(--text-light);
+            padding: 120px 20px;
+            text-align: center;
+            min-height: 400px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #code-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            text-align: left;
+            padding: 20px;
+            box-sizing: border-box;
+            
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.4;
+            color: rgba(100, 200, 255, 0.6); 
+            
+            z-index: 1; 
+            white-space: pre-wrap;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(30,30,46,0.4) 0%, rgba(30,30,46,0.85) 100%);
+            
+            z-index: 2;
+        }
+        .header-content {
+            position: relative;
+            z-index: 3; 
+            max-width: 800px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.8); 
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            line-height: 1.1;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin: 0 auto 30px auto;
+            opacity: 0.95;
+        }
+
+        /* Przycisk */
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #5a52d5;
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(108, 99, 255, 0.6);
+        }
+        section {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--secondary);
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+        .about-grid {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .about-text { flex: 1; }
+.about-img { 
+            flex: 1; 
+            background: #ddd; 
+            height: 350px; 
+            border-radius: 10px;
+            position: relative;
+            background-image: url('Profil.jpg');
+            background-size: cover;
+            background-position: center 25%;
+        }
+        .badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Karty Oferty */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .card h3 { color: var(--primary); }
+        .card ul { padding-left: 20px; text-align: left; }
+        .card li { margin-bottom: 8px; font-size: 0.95rem; }
+
+        /* Formularz */
+        .contact-form {
+            background: #f9f9f9;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        .legal-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 0.8rem;
+            color: #666;
+            text-align: left;
+        }
+        .legal-check input { width: auto; margin-top: 3px; }
+
+        footer {
+            background: var(--secondary);
+            color: #777;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div id="code-bg"></div>
+        
+        <div class="header-overlay"></div>
+        
+        <div class="header-content">
+            <h1>Adam Piątek</h1>
+            <p style="font-size: 1.4rem; font-weight: bold; color: var(--accent); margin-bottom: 20px;">
+                Od całkowitych podstaw do poziomu profesjonalisty
+            </p>
+            <p>
+                Specjalista ds. Automatyzacji AI i twórca gier. Niezależnie czy dopiero stawiasz pierwszą kropkę w kodzie, czy chcesz stworzyć zaawansowany system Multiplayer – pomogę Ci wejść na wyższy poziom.
+            </p>
+            <a href="#kontakt" class="btn">Zarezerwuj lekcję (60 min)</a>
+        </div>
+    </header>
+
+    <section id="o-mnie">
+        <h2>Dlaczego warto ze mną kodować?</h2>
+        <div class="about-grid">
+            <div class="about-img">
+                <div class="badge">7 lat doświadczenia</div>
+            </div>
+            <div class="about-text">
+                <p>Jestem programistą z <strong>7-letnim stażem</strong>, a obecnie pracuję jako <strong>Specjalista ds. Automatyzacji AI</strong>. Gry tworzę od dziecka – od prostych platformówek po skomplikowane systemy Multiplayer.</p>
+                <p><strong>Dopasowuję się do Twojego poziomu:</strong></p>
+                <ul>
+                    <li><strong>Początkujący:</strong> Uczymy się bez stresu. Tłumaczę "po ludzku", aż zrozumiesz.</li>
+                    <li><strong>Zaawansowani:</strong> Robimy profesjonalne systemy, optymalizację i AI.</li>
+                </ul>
+                <p>Znajdziesz mnie też na TikToku, gdzie uczę gamedevu.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="oferta">
+        <h2>Czego możemy się uczyć?</h2>
+        <div class="skills-grid">
+            <div class="card">
+                <h3>🎮 Unity & C#</h3>
+                <p>Tworzenie gier od A do Z</p>
+                <ul>
+                    <li><strong>Start:</strong> Interfejs, fizyka, pierwsze skrypty.</li>
+                    <li><strong>Mid:</strong> Animacje, UI, Systemy zapisu gry.</li>
+                    <li><strong>Pro:</strong> Multiplayer, Wzorce Projektowe.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>🐍 Python & AI</h3>
+                <p>Programowanie i Automatyzacja</p>
+                <ul>
+                    <li><strong>Start:</strong> Składnia, pętle, logika.</li>
+                    <li><strong>Praktyka:</strong> Boty, automatyzacja, gry PyGame.</li>
+                    <li><strong>Pro:</strong> Integracje z ChatGPT/OpenAI, analiza danych.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontakt">
+        <h2>Zapisz się na zajęcia</h2>
+        <div class="contact-form">
+            <form action="https://formspree.io/f/mkgaybjn" method="POST">
+                <input type="hidden" name="_subject" value="Nowe zgłoszenie: Korepetycje IT">
+                
+                <label>Twoje Imię</label>
+                <input type="text" name="imie" placeholder="Wpisz imię" required>
+                
+                <label>Twój Email</label>
+                <input type="email" name="email" placeholder="Wpisz email" required>
+
+                <label>Numer telefonu (opcjonalnie)</label>
+                <input type="tel" name="telefon" placeholder="np. 500 123 456">
+
+                <label>Temat</label>
+                <select name="temat">
+                    <option value="Unity">Unity (Gry)</option>
+                    <option value="Python">Python (Programowanie)</option>
+                    <option value="AI">AI / Automatyzacja</option>
+                    <option value="Inne">Inne / Konsultacja</option>
+                </select>
+
+                <label>Wiadomość</label>
+                <textarea name="wiadomosc" rows="4" placeholder="Napisz, na czym Ci zależy..."></textarea>
+
+                <div class="legal-check">
+                    <input type="checkbox" id="rodo" name="zgoda_rodo" required>
+                    <label for="rodo">Wyrażam zgodę na przetwarzanie danych w celu kontaktu (RODO).</label>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%;">Wyślij zgłoszenie</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 Adam Piątek.
+    </footer>
+
+    <script>
+        const codeText = `
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour {
+    public float speed = 12.0f;
+    
+    void Update() {
+        // Sterowanie graczem
+        float moveX = Input.GetAxis("Horizontal");
+        float moveZ = Input.GetAxis("Vertical");
+
+        Vector3 move = new Vector3(moveX, 0, moveZ);
+        transform.Translate(move * speed * Time.deltaTime);
+
+        if (Input.GetButtonDown("Jump")) {
+            Jump(); 
+        }
+    }
+
+    void Jump() {
+        Debug.Log("Skok wykonany!");
+        // Fizyka skoku...
+    }
+}
+
+# Python AI Script
+def analyze_data(input_data):
+    import pandas as pd
+    print("Analiza danych w toku...")
+    return pd.DataFrame(input_data).describe()
+`;
+
+        const bg = document.getElementById('code-bg');
+        let i = 0;
+
+        function typeWriter() {
+            if (i < codeText.length) {
+                bg.innerHTML += codeText.charAt(i);
+                i++;
+                bg.scrollTop = bg.scrollHeight; // Scrolluj w dół
+                setTimeout(typeWriter, 40); // Prędkość pisania
+            } else {
+                // Reset po zakończeniu
+                setTimeout(() => {
+                    bg.innerHTML = "";
+                    i = 0;
+                    typeWriter();
+                }, 3000);
+            }
+        }
+        
+        // Uruchomienie
+        typeWriter();
+    </script>
+
+</body>
+</html>
